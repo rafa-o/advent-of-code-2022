@@ -86,7 +86,6 @@ private fun getCargoStacks(cargoLoad: String): Array<ArrayDeque<Char>> {
 }
 
 private fun getMovingProcedures(movingPlan: String): List<Triple<Int, Int, Int>> {
-    println(movingPlan)
     val instructions = mutableListOf<Triple<Int, Int, Int>>()
     movingPlan.trim().split("\n").forEach { movingProcedure ->
         // extract the numbers from the instruction line
@@ -95,10 +94,6 @@ private fun getMovingProcedures(movingPlan: String): List<Triple<Int, Int, Int>>
             .toList()
 
         instructions.add(Triple(quantity, sourceStackIdx - 1, destinationStackIdx - 1))
-    }
-
-    for (i in instructions) {
-        println(i)
     }
 
     return instructions
