@@ -67,16 +67,17 @@ private fun getCargoStacks(cargoLoad: String): Array<ArrayDeque<Char>> {
     val stacks = Array(numberOfStacks) { ArrayDeque<Char>() }
 
     val cargoLines = cargoLoad.split("\n")
-    // starts with the last line to see where to check for crates
-    for ((idx, c) in cargoLines.last().withIndex()) {
+    // we start with the last line to see which stacks we have on the input
+    for ((crateStackIndex, c) in cargoLines.last().withIndex()) {
         if (c.isDigit()) {
-            // when we find a stack number, we go up the lines adding the crates to the stack,
-            // using idx as the index in the string to get the crate
+            // when we find a digit (stack number), we move up on the lines adding the crates
+            // to the stack, using crateStackIndex as the index in the string where we can find the crate
 
             val stackAccessIdx = Character.getNumericValue(c) - 1
             for (i in cargoLines.lastIndex - 1 downTo 0) {
-                if (idx < cargoLines[i].length && cargoLines[i][idx] != ' ') {
-                    stacks[stackAccessIdx].push(cargoLines[i][idx])
+                val currentLine = cargoLines[i]
+                if (crateStackIndex < currentLine.length && currentLine[crateStackIndex] != ' ') {
+                    stacks[stackAccessIdx].push(currentLine[crateStackIndex])
                 }
             }
         }
