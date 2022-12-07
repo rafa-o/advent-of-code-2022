@@ -10,6 +10,14 @@ fun main() {
     solutionPart2(allCalories = input)
 }
 
+private fun parseInput(): List<String> {
+    val filePath = "${System.getProperty("user.dir")}/src/main/kotlin/Day01/Day01Input.txt"
+    val allCalories = File(filePath).readText(Charsets.UTF_8)
+        .split("\n")
+
+    return allCalories
+}
+
 private fun solutionPart1(allCalories: List<String>) {
     println("Day 01 Solution")
     var maxCalories = Integer.MIN_VALUE
@@ -49,12 +57,4 @@ private fun solutionPart2(allCalories: List<String>) {
 private fun addSumToHeap(sum: Int, heap: PriorityQueue<Int>) {
     heap.add(sum)
     if (heap.size > 3) heap.remove()
-}
-
-private fun parseInput(): List<String> {
-    val filePath = "${System.getProperty("user.dir")}/src/main/kotlin/Day01/Day01Input.txt"
-    val allCalories = File(filePath).readText(Charsets.UTF_8)
-        .split("\n")
-
-    return allCalories
 }

@@ -8,6 +8,13 @@ fun main() {
     solutionPart2(strategyGuide = input)
 }
 
+private fun parseInput(): String {
+    val filePath = "${System.getProperty("user.dir")}/src/main/kotlin/day02/Day02Input.txt"
+    val strategyGuide = File(filePath).readText(Charsets.UTF_8)
+
+    return strategyGuide.trim()
+}
+
 private enum class RockPaperScissors(val score: Int) {
     ROCK(1),
     PAPER(2),
@@ -83,11 +90,4 @@ private fun playWithStrategyGuide(opponentGame: Char, strategy: Char): Int {
     }
 
     return playGame(myHand, opponentHand)
-}
-
-private fun parseInput(): String {
-    val filePath = "${System.getProperty("user.dir")}/src/main/kotlin/day02/Day02Input.txt"
-    val strategyGuide = File(filePath).readText(Charsets.UTF_8)
-
-    return strategyGuide.trim()
 }
